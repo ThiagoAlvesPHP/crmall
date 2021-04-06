@@ -40,7 +40,7 @@ class HomeController extends Controller
     	$redirect = route('add');
 
     	if ($request->filled('nome') && $request->filled('nascimento') && $request->filled('sexo')) {
-    		$c->set(filter_input_array(INPUT_POST, FILTER_DEFAULT));
+    		$c->set($request->input());
     		return redirect($redirect)->with('success', true);
     	} else {
     		return redirect($redirect)->with('error', true);
@@ -66,7 +66,7 @@ class HomeController extends Controller
     	$c = new Clientes();
 
     	if ($request->filled('nome') && $request->filled('nascimento') && $request->filled('sexo')) {
-    		$c->up(filter_input_array(INPUT_POST, FILTER_DEFAULT));
+    		$c->up($request->input());
     		return redirect($redirect)->with('success_up', true);
     	} else {
     		return redirect($redirect)->with('error', true);
